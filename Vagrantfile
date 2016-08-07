@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :forwarded_port, guest: 22, host: SSH_PORT, id: 'ssh'
 
     config.vm.provision :ansible do |ansible|
-        ansible.playbook = "playbook.yml"
+        ansible.playbook = "ansible/playbook.yml"
     end
 
     config.vm.provider :virtualbox do |vb|
