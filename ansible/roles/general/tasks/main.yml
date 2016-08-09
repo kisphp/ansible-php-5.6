@@ -5,11 +5,16 @@
     - git-core
 
 - name: Install python
-  apt: name={{ item }} update_cache=yes
-  with_items:
-    - python
-    - python-dev
-    - build-essential
+  apt: name=python update_cache=yes
+
+- name: Install python DEV
+  apt: name=python-dev update_cache=yes
+
+- name: Install build-essential
+  apt: name=build-essential update_cache=yes
+
+- name: Install python PIP
+  apt: name=python-pip update_cache=yes
 
 - name: Install Memcached and CURL
   apt: name={{ item }} update_cache=yes
