@@ -23,7 +23,7 @@ php_upload_max_filesize: 100M
 php_display_errors: On
 php_display_startup_errors: On
 php_html_errors: On
-php_date_timezone: Pacific/Auckland
+php_date_timezone: Europe/Berlin
 
 # MySQL Settings
 mysql_port: 3306
@@ -31,6 +31,7 @@ mysql_root_password: root
 server_hostname: localhost
 dbuser: developer
 dbpass: develop123
+dbname: development
 
 # MySQL my.cnf settings
 mysql_max_allowed_packet: 128M
