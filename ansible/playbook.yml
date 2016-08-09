@@ -1,13 +1,17 @@
 ---
 - hosts: all
-  sudo: true
-  vars:
-    document_root: /home/vagrant/server
-    server_name: kp.local
+  become: yes
+  become_method: sudo
+  vars_files:
+    - settings.yml
+  #vars:
+  #  document_root: /home/vagrant/server
+  #  server_name: kp.local
   pre_tasks:
     - name: update apt cache
       apt: update_cache=yes
   roles:
+    - general
     - webserver
     - database
 

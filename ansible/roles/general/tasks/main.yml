@@ -1,0 +1,37 @@
+- name: Install git
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - git
+    - git-core
+
+- name: Install python
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - python
+    - python-dev
+    - build-essential
+
+- name: Install Memcached and CURL
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - memcached
+    - curl
+
+- name: Install ZSH
+  apt: name=zsh update_cache=yes
+
+- name: Install Zip
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - zip
+    - unzip
+
+- name: Install Usefull Tools
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - vim
+    - mc
+    - tree
+    - htop
+
+- include: oh-my-zsh.yml
