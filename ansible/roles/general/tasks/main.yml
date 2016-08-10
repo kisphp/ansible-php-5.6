@@ -1,42 +1,10 @@
-- name: Install git
-  apt: name={{ item }} update_cache=yes
-  with_items:
-    - git
-    - git-core
-
-- name: Install python
-  apt: name=python update_cache=yes
-
-- name: Install python DEV
-  apt: name=python-dev update_cache=yes
-
-- name: Install build-essential
-  apt: name=build-essential update_cache=yes
-
-- name: Install python PIP
-  apt: name=python-pip update_cache=yes
-
-- name: Install Memcached and CURL
-  apt: name={{ item }} update_cache=yes
-  with_items:
-    - memcached
-    - curl
-
-- name: Install ZSH
-  apt: name=zsh update_cache=yes
-
-- name: Install Zip
-  apt: name={{ item }} update_cache=yes
-  with_items:
-    - zip
-    - unzip
-
-- name: Install Usefull Tools
-  apt: name={{ item }} update_cache=yes
-  with_items:
-    - vim
-    - mc
-    - tree
-    - htop
-
+---
+- include: git.yml
+- include: python.yml
+- include: build-essential.yml
+- include: memcached.yml
+- include: curl.yml
+- include: zip.yml
+- include: tools.yml
 - include: oh-my-zsh.yml
+- include: kisphp-aliases.yml

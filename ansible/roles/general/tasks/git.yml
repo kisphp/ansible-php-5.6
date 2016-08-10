@@ -1,0 +1,5 @@
+- name: Install git
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - git
+    - git-core

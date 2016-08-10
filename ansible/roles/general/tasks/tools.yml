@@ -1,0 +1,7 @@
+- name: Install Usefull Tools
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - vim
+    - mc
+    - tree
+    - htop

@@ -2,18 +2,10 @@
 # Configuration file
 # Change settings here to control how your box is set up.
 
-document_root: /home/vagrant/server
+user: ubuntu
+
+document_root: /home/{{ user }}/server
 server_name: kp.local
-
-user: vagrant
-
-# Give VM 1/4 of system memory
-memory: 1024
-# Give VM access to all cpu cores on the host
-# To find out the number of cores, run the following commands:
-#   Mac: sysctl -n hw.ncpu
-#   Linux: nproc
-cpus: 2
 
 # php.ini settings
 php_memory_limit: 512M

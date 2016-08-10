@@ -1,0 +1,5 @@
+- name: Install Zip/Unzip
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - zip
+    - unzip
