@@ -7,6 +7,8 @@ user: ubuntu
 document_root: /home/{{ user }}/server
 server_name: kp.local
 
+server_timezone: Europe/Berlin
+
 # php.ini settings
 php_memory_limit: 512M
 php_max_execution_time: 60

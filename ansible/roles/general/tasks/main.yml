@@ -1,10 +1,11 @@
 ---
-- include: git.yml
-- include: python.yml
-- include: build-essential.yml
-- include: memcached.yml
-- include: curl.yml
-- include: zip.yml
-- include: tools.yml
-- include: oh-my-zsh.yml
-- include: kisphp-aliases.yml
+- include: components/git.yml
+- include: components/python.yml
+- include: components/build-essential.yml
+- include: components/memcached.yml
+- include: components/curl.yml
+- include: components/zip.yml
+- include: components/tools.yml
+- include: components/timezone.yml
+- include: components/oh-my-zsh.yml
+- include: components/kisphp-aliases.yml
