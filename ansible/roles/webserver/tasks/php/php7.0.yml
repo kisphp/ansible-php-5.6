@@ -1,0 +1,56 @@
+- name: "add php 7.0 repository"
+  apt_repository: repo='ppa:ondrej/php'
+                  state=present
+
+- name: "Install web packages"
+  apt: name={{ item }}
+       update_cache=no
+  with_items:
+    - git
+    - memcached
+    - mcrypt
+    - php7.0
+    - php7.0-fpm
+    - php7.0-mysql
+    - php7.0-cli
+    - php7.0-curl
+    - php7.0-fpm
+    - php7.0-intl
+    - php7.0-json
+    - php7.0-mcrypt
+    - php7.0-cgi
+    - php7.0-dev
+    - php7.0-common
+    - php7.0-gd
+    - php7.0-mysql
+    - php7.0-tidy
+    - php7.0-memcached
+    - php7.0-xdebug
+    - php7.0-xml
+    - php7.0-dom
+    - php7.0-gd
+    - php7.0-mbstring
+    - php7.0-zip
+    - libapache2-mod-php7.0
+
+#- name: "Copy php.ini to /etc/php/7.0"
+#  template:
+#      src: php7.ini.j2
+#      dest: "/etc/php/7.0/php.ini"
+
+#- name: "Bkp original config from PHP"
+#  command: mv {{ php.util.etc_path }}/{{item}}/php.ini {{ php.util.etc_path }}/php.ini.{{item}}
+#  with_items:
+#    "{{ php.util.services }}"
+
+#- name: "Link PHP.ini file to settings"
+#  file: src={{php.util.etc_path}}/php.ini
+#        dest={{ php.util.etc_path }}/{{ item }}/php.ini
+#        state=link
+#  with_items:
+#    "{{ php.util.services }}"
+
+#- name: "Copy xdebug.ini to /etc/php5/mods-available"
+#  template:
+#      src: xdebug.ini.j2
+#      dest: "/etc/php5/mods-available/xdebug.ini"
