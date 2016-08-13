@@ -3,3 +3,8 @@
   with_items:
     - git
     - git-core
+
+- name: git config push simple
+  git_config: name=push.default value=siple scope=global
+  become: yes
+  become_user: "{{ user }}"
