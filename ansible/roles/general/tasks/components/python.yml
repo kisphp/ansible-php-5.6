@@ -6,3 +6,6 @@
 
 - name: Install python PIP
   apt: name=python-pip update_cache=yes
+
+- name: Install Jinja2
+  pip: name=jinja2

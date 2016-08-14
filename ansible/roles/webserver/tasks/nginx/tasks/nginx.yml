@@ -1,30 +1,48 @@
 ---
-- name: Nginx | install nginx
-  apt: pkg=nginx state=installed
-  become: true
-  become_user: "{{ user }}"
+- name: Install Nginx
+  become: yes
+  become_method: "sudo"
+  apt: pkg=nginx state=latest
 
-- name: Nginx | nginx settings
-  template: src=nginx.conf.j2
-            dest=/etc/nginx/nginx.conf
-            backup=yes
-  become: true
-  become_user: "{{ user }}"
-  notify:
-    - restart nginx
+#- name: Change default nginx site
+#  become: yes
+#  become_method: "sudo"
+#  template: src=default.tpl dest=/etc/nginx/sites-available/default
+#  notify: restart nginx
 
-- name: Nginx | disable default server block
-  file: path=/etc/nginx/sites-enabled/default
-        state=absent
-  become: true
-  become_user: "{{ user }}"
+- name: set default nginx conf
+  become: yes
+  become_method: "sudo"
+  template: src=nginx/nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root mode=0600
   notify:
-    - restart nginx
+    - nginx-restart
+
+#- name: remove ssl example
+#  file: path=/etc/nginx/conf.d/example_ssl.conf state=absent
+#  notify:
+#    - nginx-restart
+
+#- name: Nginx | nginx settings
+#  template: src=nginx.conf.j2
+#            dest=/etc/nginx/nginx.conf
+#            backup=yes
+#  become: true
+#  become_user: "{{ user }}"
+#  notify:
+#    - restart nginx
+
+#- name: Nginx | disable default server block
+#  file: path=/etc/nginx/sites-enabled/default
+#        state=absent
+#  become: true
+#  become_user: "{{ user }}"
+#  notify:
+#    - restart nginx
 
 #- name: Nginx | set default login directory
 #  lineinfile: dest={{ home_dir }}/.bashrc state=present line='cd {{ sites_dir }}'
 
-- name: Nginx | restart nginx
-  service: name=nginx state=restarted
-  become: true
-  become_user: "{{ user }}"
+#- name: Nginx | restart nginx
+#  service: name=nginx state=restarted
+#  become: true
+#  become_user: "{{ user }}"

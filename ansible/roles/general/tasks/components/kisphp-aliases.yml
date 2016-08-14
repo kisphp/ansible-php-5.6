@@ -10,4 +10,5 @@
     chdir: /home/{{ user }}
     executable: /bin/bash
 
-- file: path=/tmp/kisphp-install.sh state=absent
+- name: remove install script
+  file: path=/tmp/kisphp-install.sh state=absent

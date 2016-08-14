@@ -17,7 +17,16 @@ php_upload_max_filesize: 100M
 php_display_errors: On
 php_display_startup_errors: On
 php_html_errors: On
-php_date_timezone: Europe/Berlin
+
+php_allow_url_fopen: Off
+php_error_reporting: E_ALL & ~E_DEPRECATED & ~E_STRICT
+
+# php xdebug settings
+php_xdebug_idekey: PHPSTORM
+php_xdebug_remote_enable: 1
+php_xdebug_remote_autostart: 1
+php_xdebug_profiler_enable: 1
+php_xdebug_remote_connect_back: 1
 
 # MySQL Settings
 mysql_port: 3306

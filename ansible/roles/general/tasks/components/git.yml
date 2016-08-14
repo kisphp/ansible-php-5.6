@@ -5,6 +5,6 @@
     - git-core
 
 - name: git config push simple
-  git_config: name=push.default value=siple scope=global
+  git_config: name=push.default value=simple scope=global
   become: yes
   become_user: "{{ user }}"
