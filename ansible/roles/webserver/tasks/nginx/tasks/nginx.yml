@@ -17,6 +17,13 @@
   notify:
     - nginx-restart
 
+- name: Add site config
+  become: yes
+  become_method: "sudo"
+  template: src=nginx/site.conf.j2 dest=/etc/nginx/sites-enabled/site.conf owner=root mode=0600
+  notify:
+    - nginx-restart
+
 #- name: remove ssl example
 #  file: path=/etc/nginx/conf.d/example_ssl.conf state=absent
 #  notify:
@@ -31,13 +38,12 @@
 #  notify:
 #    - restart nginx
 
-#- name: Nginx | disable default server block
-#  file: path=/etc/nginx/sites-enabled/default
-#        state=absent
-#  become: true
-#  become_user: "{{ user }}"
-#  notify:
-#    - restart nginx
+- name: Nginx | disable default server block
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  become: true
+  become_method: "sudo"
+  notify:
+    - restart nginx
 
 #- name: Nginx | set default login directory
 #  lineinfile: dest={{ home_dir }}/.bashrc state=present line='cd {{ sites_dir }}'

@@ -1,0 +1,35 @@
+<VirtualHost *:80>
+    ServerName ansible.local
+    ServerAlias www.ansible.local
+
+    DocumentRoot /home/vagrant/server/urbanara.de/
+
+    <Directory />
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        IndexOptions Charset=UTF-8
+    </Directory>
+
+    # Important for non-php-fpm
+    #<IfModule php5_module>
+    #    php_value newrelic.appname "ansible.local"
+    #</IfModule>
+
+    # Important for php-fpm
+    <IfModule mod_fastcgi.c>
+        AddHandler php5-fcgi .php
+        Action php5-fcgi /php5-fcgi
+        Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+        FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -pass-header Authorization
+    </IfModule>
+
+    ErrorLog ${APACHE_LOG_DIR}/de-error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/de-access.log combined
+</VirtualHost>

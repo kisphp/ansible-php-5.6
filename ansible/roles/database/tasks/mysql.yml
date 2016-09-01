@@ -33,12 +33,14 @@
               priv=*.*:ALL,GRANT
               host=%
               state=present
+  ignore_errors: True
 
 # MySQL database setup, this does the equivalent of mysql_secure_installation.
 - name: MySQL | Set the root password.
   mysql_user: name=root password={{ mysql_root_password }} host=localhost
   become: yes
   become_method: sudo
+  ignore_errors: True
 
 #- name: MySQL | Config for easy access as root user
 #  template: src=mysql_root.my.cnf.j2 dest=/root/.my.cnf
@@ -51,6 +53,7 @@
 
 - name: Create {{ dbname }} database
   mysql_db: name={{ dbname }} encoding=utf8 state=present login_user=root login_password={{ mysql_root_password }}
+  ignore_errors: True
 
 #- name: MySQL | Delete anonymous MySQL server user for {{ server_hostname }}
 #  mysql_user: name="" host="{{ server_hostname }}" state="absent" login_user=root login_password={{ mysql_root_password }}
