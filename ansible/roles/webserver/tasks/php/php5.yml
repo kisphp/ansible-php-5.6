@@ -1,0 +1,50 @@
+- name: "Install web packages"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - memcached
+    - mcrypt
+    - php5
+    - php5-common
+    - php5-gd
+    - php5-mysql
+    - php5-imap
+    - php5-cli
+    - php5-cgi
+    - php-pear
+    - php-auth
+    - php5-mcrypt
+    - mcrypt
+    - php5-imagick
+    - imagemagick
+    - php5-curl
+    - php5-intl
+    - php5-memcache
+    - php5-memcached
+    - php5-ming
+    - php5-ps
+    - php5-pspell
+    - php5-recode
+    - php5-snmp
+    - php5-sqlite
+    - php5-tidy
+    - php5-xmlrpc
+    - php5-xsl
+    - memcached
+    - snmp
+
+
+#- name: "Generate xdebug.ini"
+#  template:
+#    src: templates/php5/mods-available/xdebug.ini.j2
+#    dest: "/etc/php/5/mods-available/xdebug.ini"
+#    owner: "root"
+#    group: "root"
+#    mode: 0644
+
+#- name: "Generate fpm/php.ini"
+#  template:
+#    src: templates/php5/fpm/php.ini.j2
+#    dest: "/etc/php/5/fpm/php.ini"
+#    owner: "root"
+#    group: "root"
+#    mode: 0644

@@ -1,6 +1,16 @@
 ---
-- name: Install apache2
-  apt: name=apache2 state=present
+- name: "Install apache packages"
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - apache2
+    - apache2-doc
+    - apache2-utils
+    - libapache2-mod-php5
+    - libapache2-mod-fcgid
+    - apache2-suexec
+    - libapache2-mod-suphp
+    - libruby
+    - libapache2-mod-python
 
 - name: Remove default virtual host
   file:

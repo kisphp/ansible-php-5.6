@@ -1,4 +1,4 @@
 ---
-#- include: apache/main.yml
+- include: apache/main.yml
 - include: php/main.yml
-- include: nginx/main.yml
+#- include: nginx/main.yml
