@@ -23,7 +23,7 @@
 
 - name: "Copy apache2.conf to /etc/apache2/"
   template:
-    src: apache2/apache2.conf.j2
+    src: apache2.conf.j2
     dest: "/etc/apache2/apache2.conf"
 
 - name: Remove default virtual host
@@ -37,7 +37,7 @@
   become: yes
   become_method: "sudo"
   template:
-    src=apache2/site.conf.j2
+    src=site.conf.j2
     dest="/etc/apache2/sites-enabled/site.conf"
     owner=root
     mode=0600

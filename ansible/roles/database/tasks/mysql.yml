@@ -4,9 +4,9 @@
   become: yes
   become_method: sudo
   with_items:
-   - mysql-client
-   - mysql-server
-   - mysql-common
+   - mysql-client-5.6
+   - mysql-server-5.6
+   - mysql-common-5.6
    - python-mysqldb
 
 - name: MySQL | create MySQL configuration file

@@ -8,7 +8,7 @@
   file: path=/home/{{ user }}/.zshrc state=absent
 
 - name: deploy .zshrc
-  template: src=templates/zshrc.j2 dest=/home/{{ user }}/.zshrc owner={{ user }} group={{ user }}
+  template: src=zshrc.j2 dest=/home/{{ user }}/.zshrc owner={{ user }} group={{ user }}
 
 - name: Set zsh as default shell
   user: name={{ user }} shell=/bin/zsh
