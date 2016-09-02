@@ -13,14 +13,14 @@
 - name: set default nginx conf
   become: yes
   become_method: "sudo"
-  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root mode=0600
+  template: src=nginx/nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root mode=0600
   notify:
     - nginx-restart
 
 - name: Add site config
   become: yes
   become_method: "sudo"
-  template: src=site.conf.j2 dest=/etc/nginx/sites-enabled/site.conf owner=root mode=0600
+  template: src=nginx/site.conf.j2 dest=/etc/nginx/sites-enabled/site.conf owner=root mode=0600
   notify:
     - nginx-restart
 
