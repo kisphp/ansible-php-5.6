@@ -1,2 +1,3 @@
 ---
 - include: tasks/apache2.yml
+- include: tasks/vhost.yml directory=shop.local domain=shop.local port=80

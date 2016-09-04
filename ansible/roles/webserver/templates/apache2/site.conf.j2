@@ -1,8 +1,8 @@
-<VirtualHost *:80>
-    ServerName ansible.local
-    ServerAlias www.ansible.local
+<VirtualHost *:{{ port }}>
+    ServerName {{ domain }}
+    ServerAlias www.{{ domain }}
 
-    DocumentRoot /home/vagrant/server/urbanara.de/
+    DocumentRoot /home/vagrant/server/{{ directory }}/web
 
     <Directory />
         Options Indexes FollowSymLinks
@@ -11,10 +11,14 @@
         allow from all
         IndexOptions Charset=UTF-8
     </Directory>
+    <Directory "/home/vagrant/server/{{ directory }}/web/">
+        # http://httpd.apache.org/docs/2.4/mod/core.html#EnableMMAP
+        EnableMMAP Off
+    </Directory>
 
     # Important for non-php-fpm
     #<IfModule php5_module>
-    #    php_value newrelic.appname "ansible.local"
+    #    php_value newrelic.appname "{{ domain }}"
     #</IfModule>
 
     # Important for php-fpm
@@ -25,11 +29,11 @@
         FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -pass-header Authorization
     </IfModule>
 
-    ErrorLog ${APACHE_LOG_DIR}/de-error.log
+    ErrorLog /home/vagrant/server/{{ directory }}/apache-error.log
 
     # Possible values include: debug, info, notice, warn, error, crit,
     # alert, emerg.
     LogLevel warn
 
-    CustomLog ${APACHE_LOG_DIR}/de-access.log combined
+    CustomLog /home/vagrant/server/{{ directory }}/apache-access.log combined
 </VirtualHost>

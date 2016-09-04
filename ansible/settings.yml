@@ -9,6 +9,11 @@ server_name: kp.local
 
 server_timezone: Europe/Berlin
 
+ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+ssh_remote_hosts:
+  - github.com
+  - bitbucket.org
+
 # php.ini settings
 php_memory_limit: 512M
 php_max_execution_time: 60

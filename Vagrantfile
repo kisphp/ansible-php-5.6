@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "ubuntu/trusty64" # ubuntu 14
     config.vm.hostname = VM_NAME
     config.vm.synced_folder "./ansible", "/home/vagrant/ansible", type: SYNC_TYPE
-    config.vm.synced_folder "../", "/home/vagrant/server", type: SYNC_TYPE, create: true
+    config.vm.synced_folder "./server", "/home/vagrant/server", type: SYNC_TYPE, create: true
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
     config.vm.network :private_network, ip: VM_IP

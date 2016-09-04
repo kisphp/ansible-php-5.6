@@ -1,0 +1,16 @@
+- name: "Create directory"
+  file: path=/home/vagrant/server/{{ directory }} state=directory mode=0755
+
+- name: "Clone the shop repository"
+  git: repo=https://github.com/kisphp/shop-standard.git dest=/home/vagrant/server/{{ directory }} clone=yes update=no
+
+- name: "Create site"
+  become: yes
+  become_method: "sudo"
+  template:
+    src=apache2/site2.conf.j2
+    dest="/etc/apache2/sites-enabled/{{ domain }}.conf"
+    owner=root
+    mode=0644
+  notify:
+    - reload apache

@@ -26,20 +26,14 @@
     src: apache2/apache2.conf.j2
     dest: "/etc/apache2/apache2.conf"
 
+- name: "Copy apache envvars"
+  template:
+    src: apache2/envvars.j2
+    dest: "/etc/apache2/envvars"
+
 - name: Remove default virtual host
   file:
     path=/etc/apache2/sites-enabled/000-default.conf
     state=absent
-  notify:
-    - reload apache
-
-- name: "Overwrite vhost settings"
-  become: yes
-  become_method: "sudo"
-  template:
-    src=apache2/site.conf.j2
-    dest="/etc/apache2/sites-enabled/site.conf"
-    owner=root
-    mode=0600
   notify:
     - reload apache
