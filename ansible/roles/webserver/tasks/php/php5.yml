@@ -31,6 +31,7 @@
     - php5-xsl
     - memcached
     - snmp
+    - phpunit
 
 
 #- name: "Generate xdebug.ini"
