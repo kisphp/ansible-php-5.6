@@ -50,7 +50,7 @@
 
 - name: "Generate xdebug.ini"
   template:
-    src: templates/php7.0/mods-available/xdebug.ini.j2
+    src: php7/mods-available/xdebug.ini.j2
     dest: "/etc/php/7.0/mods-available/xdebug.ini"
     owner: "root"
     group: "root"
@@ -58,7 +58,7 @@
 
 - name: "Generate fpm/php.ini"
   template:
-    src: templates/php7.0/fpm/php.ini.j2
+    src: php7/fpm/php.ini.j2
     dest: "/etc/php/7.0/fpm/php.ini"
     owner: "root"
     group: "root"

@@ -1,0 +1,10 @@
+- name: "Make sure .ssh directory exists"
+  file: path=/home/{{ user }}/.ssh state=directory mode=0700
+
+- name: "Register remote host"
+  shell: ssh-keyscan -H {{ item }} >> /home/{{ user }}/.ssh/known_hosts
+  become: yes
+  become_user: "{{ user }}"
+  with_items:
+    - github.com
+    - bitbucket.org

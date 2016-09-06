@@ -1,0 +1,39 @@
+<VirtualHost *:{{ port }}>
+    ServerName {{ domain }}
+    ServerAlias www.{{ domain }}
+
+    DocumentRoot /home/{{ user }}/server/{{ directory }}/web
+
+    <Directory />
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        IndexOptions Charset=UTF-8
+    </Directory>
+    <Directory "/home/{{ user }}/server/{{ directory }}/web/">
+        # http://httpd.apache.org/docs/2.4/mod/core.html#EnableMMAP
+        EnableMMAP Off
+    </Directory>
+
+    # Important for non-php-fpm
+    #<IfModule php5_module>
+    #    php_value newrelic.appname "{{ domain }}"
+    #</IfModule>
+
+    # Important for php-fpm
+    <IfModule mod_fastcgi.c>
+        AddHandler php5-fcgi .php
+        Action php5-fcgi /php5-fcgi
+        Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+        FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -pass-header Authorization
+    </IfModule>
+
+    ErrorLog /home/{{ user }}/server/{{ directory }}/apache-error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog /home/{{ user }}/server/{{ directory }}/apache-access.log combined
+</VirtualHost>

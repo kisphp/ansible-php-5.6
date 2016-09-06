@@ -1,0 +1,39 @@
+---
+- name: "Install apache packages"
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - apache2
+    - apache2-doc
+    - apache2-utils
+    - libapache2-mod-php5
+    - libapache2-mod-fcgid
+    - libruby
+    - libapache2-mod-python
+
+- name: "Setup Apache modules"
+  apache2_module: name={{ item }} state=present
+  with_items:
+    - rewrite
+    - proxy
+    - proxy_http
+    - headers
+    - actions
+    - alias
+    - ssl
+
+- name: "Copy apache2.conf to /etc/apache2/"
+  template:
+    src: apache2/apache2.conf.j2
+    dest: "/etc/apache2/apache2.conf"
+
+- name: "Copy apache envvars"
+  template:
+    src: apache2/envvars.j2
+    dest: "/etc/apache2/envvars"
+
+- name: Remove default virtual host
+  file:
+    path=/etc/apache2/sites-enabled/000-default.conf
+    state=absent
+  notify:
+    - reload apache

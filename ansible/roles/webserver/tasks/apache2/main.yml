@@ -1,0 +1,8 @@
+---
+- include: tasks/apache2.yml
+
+- include: tasks/git-clone.yml directory=shop.local domain=shop.local git_url=https://github.com/kisphp/shop-standard.git
+- include: tasks/vhost.yml directory=shop.local domain=shop.local port=80
+
+#- include: tasks/git-clone.yml directory=s.local domain=s.local git_url=git@bitbucket.org:psihologiecuantica/psihologiecuantica.ro.git
+#- include: tasks/vhost.yml directory=s.local domain=s.local port=80

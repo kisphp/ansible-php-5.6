@@ -9,3 +9,4 @@
 - include: components/timezone.yml
 - include: components/oh-my-zsh.yml
 - include: components/kisphp-aliases.yml
+- include: components/ssh.yml

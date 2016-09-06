@@ -1,0 +1,66 @@
+- name: "Adding PPA repo for php 5.6"
+  become: yes
+  apt_repository:
+    repo: 'ppa:ondrej/php5-5.6'
+
+- name: Ensure PHP modules are present using apt
+  become: yes
+  apt:
+    name: "{{ php.package }}-{{ item.1 }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 86400
+  with_indexed_items: "{{ php.modules }}"
+  notify: reload webserver
+
+- name: "Install PHP packages"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - memcached
+    - mcrypt
+    - php5
+    - php5-common
+    - php5-gd
+    - php5-mysql
+    - php5-imap
+    - php5-cli
+    - php5-cgi
+    - php-pear
+    - php-auth
+    - php5-mcrypt
+    - mcrypt
+    - php5-imagick
+    - imagemagick
+    - php5-curl
+    - php5-intl
+    - php5-memcache
+    - php5-memcached
+#    - php5-ming
+    - php5-ps
+    - php5-pspell
+    - php5-recode
+    - php5-snmp
+    - php5-sqlite
+    - php5-tidy
+    - php5-xmlrpc
+    - php5-xsl
+    - memcached
+    - snmp
+    - phpunit
+
+
+#- name: "Generate xdebug.ini"
+#  template:
+#    src: templates/php5/mods-available/xdebug.ini.j2
+#    dest: "/etc/php/5/mods-available/xdebug.ini"
+#    owner: "root"
+#    group: "root"
+#    mode: 0644
+
+#- name: "Generate fpm/php.ini"
+#  template:
+#    src: templates/php5/fpm/php.ini.j2
+#    dest: "/etc/php/5/fpm/php.ini"
+#    owner: "root"
+#    group: "root"
+#    mode: 0644

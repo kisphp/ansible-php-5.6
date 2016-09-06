@@ -1,0 +1,10 @@
+- name: "Create site vhost"
+  become: yes
+  become_method: "sudo"
+  template:
+    src=apache2/site2.conf.j2
+    dest="/etc/apache2/sites-enabled/{{ domain }}.conf"
+    owner=root
+    mode=0644
+  notify:
+    - reload apache
