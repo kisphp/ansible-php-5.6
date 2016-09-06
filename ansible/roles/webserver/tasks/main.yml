@@ -1,6 +1,6 @@
 ---
-#- include: nodejs/main.yml
-#- include: npm/main.yml
-#- include: apache2/main.yml
+- include: nodejs/main.yml
+- include: npm/main.yml
+- include: apache2/main.yml
 - include: php/main.yml
 #- include: nginx/main.yml
