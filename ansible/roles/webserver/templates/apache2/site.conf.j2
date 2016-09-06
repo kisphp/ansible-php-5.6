@@ -2,7 +2,7 @@
     ServerName {{ domain }}
     ServerAlias www.{{ domain }}
 
-    DocumentRoot /home/vagrant/server/{{ directory }}/web
+    DocumentRoot /home/{{ user }}/server/{{ directory }}/web
 
     <Directory />
         Options Indexes FollowSymLinks
@@ -11,7 +11,7 @@
         allow from all
         IndexOptions Charset=UTF-8
     </Directory>
-    <Directory "/home/vagrant/server/{{ directory }}/web/">
+    <Directory "/home/{{ user }}/server/{{ directory }}/web/">
         # http://httpd.apache.org/docs/2.4/mod/core.html#EnableMMAP
         EnableMMAP Off
     </Directory>
@@ -29,11 +29,11 @@
         FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -pass-header Authorization
     </IfModule>
 
-    ErrorLog /home/vagrant/server/{{ directory }}/apache-error.log
+    ErrorLog /home/{{ user }}/server/{{ directory }}/apache-error.log
 
     # Possible values include: debug, info, notice, warn, error, crit,
     # alert, emerg.
     LogLevel warn
 
-    CustomLog /home/vagrant/server/{{ directory }}/apache-access.log combined
+    CustomLog /home/{{ user }}/server/{{ directory }}/apache-access.log combined
 </VirtualHost>

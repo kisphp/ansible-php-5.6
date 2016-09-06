@@ -8,7 +8,7 @@ SSH_PORT = 10090
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    # config.vm.box = "ubuntu/xenial64" # ubuntu 16
+    #config.vm.box = "ubuntu/xenial64" # ubuntu 16
     config.vm.box = "ubuntu/trusty64" # ubuntu 14
     config.vm.hostname = VM_NAME
     config.vm.synced_folder "./ansible", "/home/vagrant/ansible", type: SYNC_TYPE

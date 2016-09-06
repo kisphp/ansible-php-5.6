@@ -2,17 +2,26 @@
 # Configuration file
 # Change settings here to control how your box is set up.
 
-user: ubuntu
+user: vagrant
 
 document_root: /home/{{ user }}/server
-server_name: kp.local
+server_name: ansible.local
 
 server_timezone: Europe/Berlin
 
-ssh_known_hosts_command: "ssh-keyscan -H -T 10"
-ssh_remote_hosts:
-  - github.com
-  - bitbucket.org
+# NodeJS
+# Pin-Priority of NodeSource repository
+nodejs_nodesource_pin_priority: 500
+nodejs_version: "6.x"
+
+# php package
+php:
+  package: php5
+  modules:
+    - cli
+  composer:
+    present: True
+    auth: []
 
 # php.ini settings
 php_memory_limit: 512M

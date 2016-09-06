@@ -1,0 +1,10 @@
+- name: "Check if {{ domain }} project exists"
+  stat: path=/home/{{ user }}/server/{{ directory }}
+  register: project_directory
+
+#- name: "Create directory"
+#  file: path=/home/{{ user }}/server/{{ directory }} state=directory mode=0755
+
+- name: "Clone the {{ domain }} repository"
+  git: repo={{ git_url }} dest=/home/{{ user }}/server/{{ directory }} clone=yes update=no accept_hostkey=yes
+  when: project_directory.stat.exists == False

@@ -1,5 +1,5 @@
 ---
-- name: MySQL | install mysql packages
+- name: "MySQL | install mysql packages"
   apt: pkg={{ item }} state=installed
   become: yes
   become_method: sudo
@@ -9,7 +9,7 @@
    - mysql-common-5.6
    - python-mysqldb
 
-- name: MySQL | create MySQL configuration file
+- name: "MySQL | create MySQL configuration file"
   template:
     src=my.cnf.j2
     dest=/etc/mysql/my.cnf
@@ -20,12 +20,12 @@
   become: yes
   become_method: sudo
 
-- name: MySQL | restart mysql
+- name: "MySQL | restart mysql"
   service: name=mysql state=restarted
   become: yes
   become_method: sudo
 
-- name: "Having default root User present for all hosts (automation purposes, your connections must be protected by a firewall)"
+- name: "Having default root user present for all hosts (automation purposes, your connections must be protected by a firewall)"
   mysql_user: login_user=root
               login_password=''
               name={{ dbuser }}
@@ -36,48 +36,18 @@
   ignore_errors: True
 
 # MySQL database setup, this does the equivalent of mysql_secure_installation.
-- name: MySQL | Set the root password.
-  mysql_user: name=root password={{ mysql_root_password }} host=localhost
-  become: yes
-  become_method: sudo
-  ignore_errors: True
-
-#- name: MySQL | Config for easy access as root user
-#  template: src=mysql_root.my.cnf.j2 dest=/root/.my.cnf
+#- name: "MySQL | Set the root password."
+#  mysql_user: name=root password={{ mysql_root_password }} host=localhost
 #  become: yes
 #  become_method: sudo
+#  ignore_errors: True
 
-#- name: MySQL | Config for easy access as root user
-#  template: src=mysql_root.my.cnf.j2 dest={{ home_dir }}/.my.cnf
-#  when: "'{{ user }}' != 'root'"
-
-- name: Create {{ dbname }} database
-  mysql_db: name={{ dbname }} encoding=utf8 state=present login_user=root login_password={{ mysql_root_password }}
+- name: "Create {{ dbname }} database"
+  mysql_db: name={{ dbname }} encoding=utf8 state=present login_user=root login_password=''
   ignore_errors: True
 
-#- name: MySQL | Delete anonymous MySQL server user for {{ server_hostname }}
-#  mysql_user: name="" host="{{ server_hostname }}" state="absent" login_user=root login_password={{ mysql_root_password }}
-
-#- name: MySQL | create application database user
-#  mysql_user: name={{ dbuser }} password={{ dbpass }} priv=*.*:ALL host='%' state=present login_password="" login_user=root
-
-#- name: MySQL | Delete anonymous MySQL server user for localhost
-#  mysql_user: name="" state="absent" host=localhost login_user=root login_password={{ mysql_root_password }}
-
-#- name: MySQL | Secure the MySQL root user for IPV6 localhost (::1)
-#  mysql_user: name="root" password="{{ mysql_root_password }}" host="::1" login_user=root login_password={{ mysql_root_password }}
-
-#- name: MySQL | Secure the MySQL root user for IPV4 localhost (127.0.0.1)
-#  mysql_user: name="root" password="{{ mysql_root_password }}" host="127.0.0.1" login_user=root login_password={{ mysql_root_password }}
-
-#- name: MySQL | Secure the MySQL root user for localhost domain (localhost)
-#  mysql_user: name="root" password="{{ mysql_root_password }}" host="localhost" login_user=root login_password={{ mysql_root_password }}
-
-#- name: MySQL | Secure the MySQL root user for {{ server_hostname }} domain
-#  mysql_user: name="root" password="{{ mysql_root_password }}" host="{{ server_hostname }}" login_user=root login_password={{ mysql_root_password }}
-
 - name: MySQL | Remove the MySQL test database
-  mysql_db: db=test state=absent login_user=root login_password={{ mysql_root_password }}
+  mysql_db: db=test state=absent login_user=root login_password=''
 
 - name: MySQL | restart mysql
   service: name=mysql state=restarted

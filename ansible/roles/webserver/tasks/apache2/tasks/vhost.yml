@@ -1,15 +1,4 @@
-- name: "Create directory"
-  file: path=/home/vagrant/server/{{ directory }} state=directory mode=0755
-
-- name: "Check if project exists"
-  stat: path=/home/vagrant/server/{{ directory }}
-  register: project_directory
-
-- name: "Clone the shop repository"
-  git: repo=https://github.com/kisphp/shop-standard.git dest=/home/vagrant/server/{{ directory }} clone=yes update=no
-  when: project_directory.stat.exists == False
-
-- name: "Create site"
+- name: "Create site vhost"
   become: yes
   become_method: "sudo"
   template:

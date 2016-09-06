@@ -4,12 +4,12 @@
     ServerName {{ domain }}
     ServerAlias www.{{ domain }}
 
-    DocumentRoot /home/vagrant/server/{{ directory }}/web
+    DocumentRoot /home/{{ user }}/server/{{ directory }}/web
     <Directory />
         Options FollowSymLinks
         AllowOverride All
     </Directory>
-    <Directory /home/vagrant/server/{{ directory }}/web/>
+    <Directory /home/{{ user }}/server/{{ directory }}/web/>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
@@ -24,11 +24,11 @@
         Allow from all
     </Directory>
 
-    ErrorLog /home/vagrant/server/{{ directory }}/error.log
+    ErrorLog /home/{{ user }}/server/{{ directory }}/error.log
 
     # Possible values include: debug, info, notice, warn, error, crit,
     # alert, emerg.
     LogLevel warn
 
-    CustomLog /home/vagrant/server/{{ directory }}/access.log combined
+    CustomLog /home/{{ user }}/server/{{ directory }}/access.log combined
 </VirtualHost>

@@ -1,27 +1,10 @@
-#- name: Make sure the known hosts file exists
-#  file: "path={{ ssh_known_hosts_file }} state=touch"
-
 - name: "Make sure .ssh directory exists"
   file: path=/home/{{ user }}/.ssh state=directory mode=0700
-
-#- name: Check host name availability
-#  shell: "ssh-keygen -f /home/vagrant/{{ user }}/.ssh/known_hosts -F {{ item }}"
-#  with_items: ssh_known_hosts
-#  register: ssh_known_host_results
-#  ignore_errors: yes
-
-#- name: Scan the public key
-#  shell: "{{ ssh_known_hosts_command }} {{ item.item }} >> {{ ssh_known_hosts_file }}"
-#  with_items: ssh_known_host_results.results
-#  when: item.stdout == ""
 
 - name: "Register remote host"
   shell: ssh-keyscan -H {{ item }} >> /home/{{ user }}/.ssh/known_hosts
   become: yes
   become_user: "{{ user }}"
-  with_items: ssh_remote_hosts
-
-#- name: "Register bitbucket host"
-#  command: ssh-keyscan -H bitbucket.org >> /home/{{ user }}/.ssh/known_hosts
-#  become: yes
-#  become_user: "{{ user }}"
+  with_items:
+    - github.com
+    - bitbucket.org
