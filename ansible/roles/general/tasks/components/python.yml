@@ -1,11 +1,28 @@
-- name: Install python
+- name: "python python >= 2.7.9"
+  become: yes
+  apt_repository:
+    repo: 'ppa:fkrull/deadsnakes-python2.7'
+
+- name: "Install python"
   apt: name=python update_cache=yes
 
-- name: Install python DEV
+- name: "Install python DEV"
   apt: name=python-dev update_cache=yes
 
-- name: Install python PIP
+- name: "Install python PIP"
   apt: name=python-pip update_cache=yes
 
-- name: Install Jinja2
+- name: "Install Jinja2"
   pip: name=jinja2
+
+- name: "Install UrlLib3"
+  pip: name=urllib3
+
+- name: "Install pyopenssl"
+  pip: name=pyopenssl
+
+- name: "Install ndg-httpsclient"
+  pip: name=ndg-httpsclient
+
+- name: "Install pyasn1"
+  pip: name=pyasn1
