@@ -8,3 +8,8 @@
 - name: "Clone the {{ domain }} repository"
   git: repo={{ git_url }} dest=/home/{{ user }}/server/{{ directory }} clone=yes update=no accept_hostkey=yes
   when: project_directory.stat.exists == False
+
+- name: "Run composer install for {{ directory }}"
+  composer:
+    command: "install"
+    working_dir: "/home/{{ user }}/server/{{ directory }}"
