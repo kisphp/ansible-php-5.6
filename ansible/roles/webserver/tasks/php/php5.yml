@@ -49,13 +49,13 @@
     - phpunit
 
 
-#- name: "Generate xdebug.ini"
-#  template:
-#    src: templates/php5/mods-available/xdebug.ini.j2
-#    dest: "/etc/php/5/mods-available/xdebug.ini"
-#    owner: "root"
-#    group: "root"
-#    mode: 0644
+- name: "Generate xdebug.ini"
+  template:
+    src: templates/php5/xdebug.ini.j2
+    dest: "/etc/php5/mods-available/xdebug.ini"
+    owner: "root"
+    group: "root"
+    mode: 0644
 
 #- name: "Generate fpm/php.ini"
 #  template:
