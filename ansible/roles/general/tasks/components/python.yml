@@ -21,6 +21,9 @@
 - name: "Install pyopenssl"
   pip: name=pyopenssl
 
+- name: "Install python keyczar"
+  pip: name=python-keyczar
+
 - name: "Install ndg-httpsclient"
   pip: name=ndg-httpsclient
 
