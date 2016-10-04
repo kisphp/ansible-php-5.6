@@ -3,4 +3,5 @@
 - include: npm/main.yml
 - include: apache2/main.yml
 - include: php/main.yml
+- include: redis/main.yml
 #- include: nginx/main.yml
