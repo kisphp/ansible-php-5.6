@@ -8,5 +8,6 @@
         apt: update_cache=yes
     roles:
       - general
+      - frontend
       - webserver
       - database
