@@ -1,0 +1,3 @@
+---
+- include: nodejs/main.yml
+- include: npm/main.yml

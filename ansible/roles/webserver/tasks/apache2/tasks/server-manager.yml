@@ -1,0 +1,7 @@
+---
+- include: git-clone.yml directory=server_manager domain=server_manager git_url=https://github.com/kisphp/server-manager.git
+
+- name: "Run composer install for server_manager"
+  composer:
+    command: "install"
+    working_dir: "/home/{{ user }}/server/server_manager"

@@ -1,31 +1,26 @@
 ---
-- name: Download composer installer
+- name: "Download composer installer"
   get_url:
     url: https://getcomposer.org/installer
     dest: "~/composer_installer.php"
     mode: 0755
 
-- name: Make sure Composer is installed
+- name: "Make sure Composer is installed"
   command: "php composer_installer.php"
   args:
     chdir: "~"
     creates: composer.phar
 
-- name: Make sure Composer is installed globally
+- name: "Make sure Composer is installed globally"
   become: yes
   command: cp composer.phar /usr/bin/composer
   args:
     chdir: "{{ ansible_env['HOME'] }}"
     creates: /usr/bin/composer
 
-- name: Make sure composer authentication is present
+- name: "Make sure composer authentication is present"
   command: "composer config -g {{ item.type }}.{{ item.hostname }} {{ item.username }} {{ item.password }}"
   with_items: "{{ php.composer.auth }}"
   when: php.composer.auth is defined
   changed_when: False
   no_log: True
-
-#- name: PHP | Install Composer
-#  shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
-#  become: true
-#  become_method: sudo
