@@ -8,3 +8,13 @@
   with_items:
     - github.com
     - bitbucket.org
+
+- name: "Allow SSH Login without password to current user"
+  authorized_key: user={{ user }} key="{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+  become: yes
+
+- name: "Copy id_rsa.pub file to access github and bitbucket"
+  copy: src=~/.ssh/id_rsa.pub dest=/home/{{ user }}/.ssh/id_rsa.pub owner={{ user }} group={{ user }} mode=0644
+
+- name: "Copy id_rsa file to access github and bitbucket"
+  copy: src=~/.ssh/id_rsa dest=/home/{{ user }}/.ssh/id_rsa owner={{ user }} group={{ user }} mode=0644
