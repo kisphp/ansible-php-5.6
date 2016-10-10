@@ -8,3 +8,5 @@
 - name: "Clone the {{ domain }} repository"
   git: repo={{ git_url }} dest=/home/{{ user }}/server/{{ directory }} clone=yes update=no accept_hostkey=yes
   when: project_directory.stat.exists == False
+  become: yes
+  become_user: "{{ user }}"
