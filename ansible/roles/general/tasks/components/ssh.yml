@@ -14,7 +14,7 @@
   become: yes
 
 - name: "Copy id_rsa.pub file to access github and bitbucket"
-  copy: src=~/.ssh/id_rsa.pub dest=/home/{{ user }}/.ssh/id_rsa.pub owner={{ user }} group={{ user }} mode=0644
+  copy: src=~/.ssh/id_rsa.pub dest=/home/{{ user }}/.ssh/id_rsa.pub owner={{ user }} group={{ user }} mode=0600
 
 - name: "Copy id_rsa file to access github and bitbucket"
-  copy: src=~/.ssh/id_rsa dest=/home/{{ user }}/.ssh/id_rsa owner={{ user }} group={{ user }} mode=0644
+  copy: src=~/.ssh/id_rsa dest=/home/{{ user }}/.ssh/id_rsa owner={{ user }} group={{ user }} mode=0600
