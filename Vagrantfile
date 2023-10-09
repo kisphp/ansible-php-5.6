@@ -1,6 +1,6 @@
-VM_IP = '10.10.0.60'
+VM_IP = '10.10.0.10'
 VM_NAME = 'ansible.local'
-VM_RAM = 1200
+VM_RAM = 1600
 VM_CPUS = 4
 SYNC_TYPE = 'nfs'
 SSH_PORT = 10060
